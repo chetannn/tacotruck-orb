@@ -9,5 +9,4 @@ display:
   source_url: "https://github.com/chetannn/tacotruck-orb"
 
 commands:
-  greet: <<include(commands/greet.yml)>>
   install: <<include(commands/install.yml)>>
