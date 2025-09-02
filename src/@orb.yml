@@ -10,4 +10,4 @@ display:
 
 commands:
   greet: <<include(commands/greet.yml)>>
-  install-cli: <<include(commands/install_cli.yml)>>
+  install: <<include(commands/install.yml)>>
