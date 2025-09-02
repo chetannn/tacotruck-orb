@@ -2,12 +2,21 @@
 
 set -e
 
+set_sudo() {
+    if [[ $EUID == 0 ]]; then 
+        echo ""
+    else 
+        echo "sudo"
+    fi
+}
+
+
 echo "Installing TacoTruck CLI..."
 echo "Node.js version: $(node --version)"
 echo "npm version: $(npm --version)"
 
 echo "Installing @testfiesta/tacotruck CLI..."
-npm install -g @testfiesta/tacotruck
+$(set_sudo) npm install -g @testfiesta/tacotruck
 
 echo "TacoTruck CLI installed successfully!"
 echo "TacoTruck CLI version:"
