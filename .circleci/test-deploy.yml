@@ -19,8 +19,8 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
-      - tacotruck/install_cli:
-          check-version: true
+      - tacotruck/install:
+          check_version: true
 workflows:
   test-deploy:
     jobs:

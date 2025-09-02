@@ -10,5 +10,5 @@ usage:
     install-and-verify:
       executor: tacotruck/default
       steps:
-        - tacotruck/install-cli:
-            check-version: true
+        - tacotruck/install:
+            check_version: true
