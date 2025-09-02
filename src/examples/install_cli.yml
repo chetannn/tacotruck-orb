@@ -1,16 +1,11 @@
 description: >
   Example of how to install the TacoTruck CLI in a CircleCI workflow.
   This will install the @testfiesta/tacotruck CLI and verify the installation by printing the version.
-
 usage:
   version: 2.1
   orbs:
     tacotruck: chetan/tacotruck@<<pipeline.parameters.dev-orb-version>>
   workflows:
-    test-install:
-      jobs:
-        - install-and-verify:
-            context: []
   jobs:
     install-and-verify:
       executor: tacotruck/default
