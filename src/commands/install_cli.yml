@@ -3,7 +3,7 @@ description: >
   This command requires a Node.js environment (use the default executor or cimg/node image).
 
 parameters:
-  check-version:
+  check_version:
     type: boolean
     default: true
     description: "Whether to check and print the CLI version after installation"
@@ -11,6 +11,6 @@ parameters:
 steps:
   - run:
       environment:
-        PARAM_CHECK_VERSION: <<parameters.check-version>>
+        PARAM_CHECK_VERSION: <<parameters.check_version>>
       name: Install TacoTruck CLI
-      command: <<include(scripts/install-cli.sh)>>
+      command: <<include(scripts/install_cli.sh)>>
