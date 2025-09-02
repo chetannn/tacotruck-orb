@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
       - tacotruck/install:
-          check_version: true
+          version: "latest"
 workflows:
   test-deploy:
     jobs:
