@@ -15,8 +15,7 @@ release-filters: &release-filters
 
 jobs:
   command-test:
-    docker:
-      - image: cimg/base:current
+    executor: tacotruck/default
     steps:
       - checkout
       - tacotruck/install:
