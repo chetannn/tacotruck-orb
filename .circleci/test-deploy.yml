@@ -19,7 +19,8 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
-      - tacotruck/greet
+      - tacotruck/install-cli:
+          check-version: true
 workflows:
   test-deploy:
     jobs:
@@ -28,7 +29,7 @@ workflows:
       - orb-tools/pack:
           filters: *release-filters
       - orb-tools/publish:
-          orb_name: testfiesta/tacotruck
+          orb_name: chetan/tacotruck
           vcs_type: gh
           pub_type: dev
           requires:

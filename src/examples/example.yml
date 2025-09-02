@@ -3,7 +3,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    <orb-name>: testfiesta/tacotruck@1.0.0
+    <orb-name>: chetan/tacotruck@1.0.0
   workflows:
     use-my-orb:
       jobs:

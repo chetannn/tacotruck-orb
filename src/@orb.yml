@@ -6,4 +6,8 @@ description: >
   and software quality.
 display:
   home_url: "https://docs.testfiesta.com"
-  source_url: "https://github.com/testfiesta/tacotruck-orb"
+  source_url: "https://github.com/chetannn/tacotruck-orb"
+
+commands:
+  greet: <<include(commands/greet.yml)>>
+  install-cli: <<include(commands/install-cli.yml)>>
