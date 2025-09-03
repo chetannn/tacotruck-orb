@@ -97,11 +97,6 @@ main() {
     local results_path
     local project_key
     local api_key_var
-    local base_url
-    local tags
-    local branch
-    local commit_sha
-    local build_number
     local timeout
 
     provider=$(circleci env subst "${PARAM_PROVIDER}")
