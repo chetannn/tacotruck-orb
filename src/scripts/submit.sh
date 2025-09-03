@@ -55,7 +55,8 @@ build_submit_command() {
     fi
 
     if [[ -n "${base_url}" ]]; then
-        cmd="${cmd} --base-url \"${base_url}\""
+        # This option is not yet supported.
+        # cmd="${cmd} --base-url \"${base_url}\""
     fi
 
     echo "${cmd}"
