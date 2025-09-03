@@ -20,9 +20,25 @@ jobs:
       - checkout
       - tacotruck/install:
           version: "latest"
+      - run:
+          name: Create sample test results
+          command: |
+            mkdir -p ./test-results
+            cat > ./test-results/junit.xml << 'EOF'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <testsuites name="Sample Test Suite" tests="3" failures="1" errors="0" time="0.5">
+              <testsuite name="ExampleTests" tests="3" failures="1" errors="0" time="0.5">
+                <testcase name="test_success" classname="ExampleTests" time="0.1"/>
+                <testcase name="test_failure" classname="ExampleTests" time="0.2">
+                  <failure message="Expected true but got false">AssertionError: Expected true but got false</failure>
+                </testcase>
+                <testcase name="test_another_success" classname="ExampleTests" time="0.2"/>
+              </testsuite>
+            </testsuites>
+            EOF
       - tacotruck/submit:
           provider: "testfiesta"
-          results_path: "./test-results"
+          results_path: "./test-results/junit.xml"
           project_key: "test-project"
           api_key: "TACOTRUCK_API_KEY"
 workflows:

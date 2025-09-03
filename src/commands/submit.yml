@@ -36,5 +36,5 @@ steps:
         PARAM_PROJECT_KEY: <<parameters.project_key>>
         PARAM_API_KEY: <<parameters.api_key>>
         PARAM_BASE_URL: <<parameters.base_url>>
-      name: Submit Test Results to Provider
+      name: Submit Test Results to <<parameters.provider>>
       command: <<include(scripts/submit.sh)>>
