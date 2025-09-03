@@ -17,7 +17,6 @@ parameters:
     description: "Project key for TacoTruck submission (optional if configured in project)"
   api_key:
     type: env_var_name
-    default: "TACOTRUCK_API_KEY"
     description: "Environment variable name containing the TacoTruck API key"
   base_url:
     type: string
