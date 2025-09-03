@@ -24,7 +24,7 @@ jobs:
           name: Create sample test results
           command: |
             mkdir -p ./test-results
-            cat > ./test-results/junit.xml << 'EOF'
+            cat > ./test-results/junit.xml \<< 'EOF'
             <?xml version="1.0" encoding="UTF-8"?>
             <testsuites name="Sample Test Suite" tests="3" failures="1" errors="0" time="0.5">
               <testsuite name="ExampleTests" tests="3" failures="1" errors="0" time="0.5">
