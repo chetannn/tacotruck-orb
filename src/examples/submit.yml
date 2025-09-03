@@ -1,0 +1,21 @@
+description: >
+  Example of how to use the TacoTruck submit command to upload test results.
+  This example shows how to install TacoTruck CLI, run tests, and submit results.
+usage:
+  version: 2.1
+  orbs:
+    tacotruck: chetan/tacotruck@<<pipeline.parameters.dev-orb-version>>
+  workflows:
+    test-and-submit:
+      jobs:
+        - test-and-submit-results:
+            executor: tacotruck/default
+            steps:
+              - checkout
+              - tacotruck/install:
+                  version: "latest"
+                  check_version: true
+              - tacotruck/submit:
+                  provider: "testfiesta"
+                  results_path: "./test-results"
+                  project_key: "my-project-key"

@@ -1,0 +1,40 @@
+description: |
+  Submit test results to TacoTruck without using npm commands.
+  This command directly calls the TacoTruck CLI to submit test results and artifacts.
+
+parameters:
+  provider:
+    type: enum
+    enum: ["testfiesta", "testrail"]
+    description: "Provider of your choice. Supported platforms include: TestRail, Testfiesta etc."
+  results_path:
+    type: string
+    default: "./test-results"
+    description: "Path to the test results directory or file to submit"
+  project_key:
+    type: string
+    default: ""
+    description: "Project key for TacoTruck submission (optional if configured in project)"
+  api_key:
+    type: env_var_name
+    default: "TACOTRUCK_API_KEY"
+    description: "Environment variable name containing the TacoTruck API key"
+  base_url:
+    type: string
+    default: "https://staging.api.testfiesta.com"
+    description: "Base URL for the TacoTruck API (optional if using default)"
+  timeout:
+    type: string
+    default: "500"
+    description: "Timeout in seconds for the submission process"
+
+steps:
+  - run:
+      environment:
+        PARAM_PROVIDER: <<parameters.provider>>
+        PARAM_RESULTS_PATH: <<parameters.results_path>>
+        PARAM_PROJECT_KEY: <<parameters.project_key>>
+        PARAM_API_KEY: <<parameters.api_key>>
+        PARAM_BASE_URL: <<parameters.base_url>>
+      name: Submit Test Results to Provider
+      command: <<include(scripts/submit.sh)>>
