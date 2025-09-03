@@ -43,7 +43,7 @@ build_submit_command() {
     local project_key="$3"
     local api_key_var="$4"
 
-    local cmd="npx @testfiesta/tacotruck "${provider}" run:submit"
+    local cmd="npx @testfiesta/tacotruck ${provider} run:submit"
 
     cmd="${cmd} --api-key \"${!api_key_var}\" --data \"${results_path}\""
 
@@ -79,10 +79,6 @@ show_submission_info() {
     local provider="$1"
     local results_path="$2"
     local project_key="$3"
-    local base_url="$4"
-    local branch="$5"
-    local commit_sha="$6"
-    local build_number="$7"
 
     echo "=== TacoTruck Submission Details ==="
     echo "Provider: ${provider}"
