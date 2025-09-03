@@ -40,7 +40,7 @@ jobs:
           provider: "testfiesta"
           results_path: "./test-results/junit.xml"
           project_key: "test-project"
-          api_key: "TACOTRUCK_API_KEY"
+          api_key: "${TESTFIESTA_API_KEY}"
 workflows:
   test-deploy:
     jobs:
