@@ -41,7 +41,7 @@ build_submit_command() {
     local provider="$1"
     local results_path="$2"
     local project_key="$3"
-    local api_key_var ="$4"
+    local api_key_var="$4"
 
     local cmd="npx @testfiesta/tacotruck "${provider}" run:submit"
 
@@ -114,7 +114,7 @@ main() {
     validate_environment
     validate_parameters "${results_path}" "${api_key_var}"
 
-    show_submission_info "${provider}" "${results_path}" "${project_key}" "
+    show_submission_info "${provider}" "${results_path}" "${project_key}"
 
     local submit_cmd
     submit_cmd=$(build_submit_command "${provider}" "${results_path}" "${project_key}" "${api_key_var}")
