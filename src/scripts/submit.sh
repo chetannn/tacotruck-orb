@@ -60,17 +60,13 @@ build_submit_command() {
 
 submit_results() {
     local submit_cmd="$1"
-    local timeout="$2"
 
     echo "Submitting test results to TacoTruck..."
 
-    if timeout "${timeout}" bash -c "${submit_cmd}"; then
+    if bash -c "${submit_cmd}"; then
         return 0
     else
         local exit_code=$?
-        if [[ ${exit_code} -eq 124 ]]; then
-            echo "❌ Submission timed out after ${timeout} seconds"
-        fi
         return ${exit_code}
     fi
 }
@@ -93,14 +89,12 @@ main() {
     local results_path
     local project_key
     local api_key_var
-    local timeout
 
     provider=$(circleci env subst "${PARAM_PROVIDER}")
     results_path=$(circleci env subst "${PARAM_RESULTS_PATH}")
     project_key=$(circleci env subst "${PARAM_PROJECT_KEY}")
     api_key_var=$(circleci env subst "${PARAM_API_KEY}")
     # base_url=$(circleci env subst "${PARAM_BASE_URL}")
-    timeout=$(circleci env subst "${PARAM_TIMEOUT}")
 
     validate_environment
     validate_parameters "${results_path}" "${api_key_var}"
@@ -110,7 +104,7 @@ main() {
     local submit_cmd
     submit_cmd=$(build_submit_command "${provider}" "${results_path}" "${project_key}" "${api_key_var}")
 
-    submit_results "${submit_cmd}" "${timeout}"
+    submit_results "${submit_cmd}"
 
     echo "TacoTruck submission complete!"
 }
