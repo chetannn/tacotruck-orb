@@ -18,6 +18,12 @@ parameters:
   api_key:
     type: env_var_name
     description: "Environment variable name containing the TacoTruck API key"
+  handle:
+    type: string
+    description: "Your handle or username for the provider. For testfiesta, it is your organization handle and for TestRail, it is your username."
+  run_name:
+    type: string
+    description: "Name of the run"
   base_url:
     type: string
     default: "https://staging.api.testfiesta.com"
@@ -30,6 +36,8 @@ steps:
         PARAM_RESULTS_PATH: <<parameters.results_path>>
         PARAM_PROJECT_KEY: <<parameters.project_key>>
         PARAM_API_KEY: <<parameters.api_key>>
+        PARAM_HANDLE: <<parameters.handle>>
+        PARAM_RUN_NAME: <<parameters.run_name>>
         PARAM_BASE_URL: <<parameters.base_url>>
       name: Submit Test Results to <<parameters.provider>>
       command: <<include(scripts/submit.sh)>>

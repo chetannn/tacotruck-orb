@@ -45,6 +45,8 @@ jobs:
           results_path: "./test-results/junit.xml"
           project_key: "test-project"
           api_key: <<parameters.api_key>>
+          handle: "ORG_1"
+          run_name: "CircleCI Test Run"
 workflows:
   test-deploy:
     jobs:

@@ -42,18 +42,21 @@ build_submit_command() {
     local results_path="$2"
     local project_key="$3"
     local api_key_var="$4"
+    local handle="$5"
+    local run_name="$6"
+    local base_url="$7"
 
     local cmd="npx @testfiesta/tacotruck ${provider} run:submit"
 
-    cmd="${cmd} --token \"${!api_key_var}\" --data \"${results_path}\""
+    cmd="${cmd} --token \"${!api_key_var}\" --data \"${results_path}\" --organization \"${handle}\" --name \"${run_name}\""
 
     if [[ -n "${project_key}" ]]; then
         cmd="${cmd} --project-key \"${project_key}\""
     fi
 
-    # if [[ -n "${base_url}" ]]; then
-    #     cmd="${cmd} --base-url \"${base_url}\""
-    # fi
+    if [[ -n "${base_url}" ]]; then
+        cmd="${cmd} --base-url \"${base_url}\""
+    fi
 
     echo "${cmd}"
 }
@@ -75,12 +78,13 @@ show_submission_info() {
     local provider="$1"
     local results_path="$2"
     local project_key="$3"
+    local base_url="$4"
 
     echo "=== TacoTruck Submission Details ==="
     echo "Provider: ${provider}"
     echo "Results Path: ${results_path}"
     [[ -n "${project_key}" ]] && echo "Project Key: ${project_key}"
-    # [[ -n "${base_url}" ]] && echo "Base URL: ${base_url}"
+    [[ -n "${base_url}" ]] && echo "Base URL: ${base_url}"
     echo "=================================="
 }
 
@@ -89,20 +93,25 @@ main() {
     local results_path
     local project_key
     local api_key_var
+    local handle
+    local run_name
+    local base_url
 
     provider=$(circleci env subst "${PARAM_PROVIDER}")
     results_path=$(circleci env subst "${PARAM_RESULTS_PATH}")
     project_key=$(circleci env subst "${PARAM_PROJECT_KEY}")
     api_key_var=$(circleci env subst "${PARAM_API_KEY}")
-    # base_url=$(circleci env subst "${PARAM_BASE_URL}")
+    handle=$(circleci env subst "${PARAM_HANDLE}")
+    run_name=$(circleci env subst "${PARAM_RUN_NAME}")
+    base_url=$(circleci env subst "${PARAM_BASE_URL}")
 
     validate_environment
     validate_parameters "${results_path}" "${api_key_var}"
 
-    show_submission_info "${provider}" "${results_path}" "${project_key}"
+    show_submission_info "${provider}" "${results_path}" "${project_key}" "${base_url}"
 
     local submit_cmd
-    submit_cmd=$(build_submit_command "${provider}" "${results_path}" "${project_key}" "${api_key_var}")
+    submit_cmd=$(build_submit_command "${provider}" "${results_path}" "${project_key}" "${api_key_var}" "${handle}" "${run_name}" "${base_url}")
 
     submit_results "${submit_cmd}"
 
