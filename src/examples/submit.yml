@@ -19,3 +19,4 @@ usage:
                   provider: "testfiesta"
                   results_path: "./test-results"
                   project_key: "my-project-key"
+                  api_key: ${TESTFIESTA_API_KEY}
