@@ -20,6 +20,11 @@ jobs:
       - checkout
       - tacotruck/install:
           version: "latest"
+      - tacotruck/submit:
+          provider: "testfiesta"
+          results_path: "./test-results"
+          project_key: "test-project"
+          api_key: "TACOTRUCK_API_KEY"
 workflows:
   test-deploy:
     jobs:
