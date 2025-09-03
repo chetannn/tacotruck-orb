@@ -10,3 +10,4 @@ display:
 
 commands:
   install: <<include(commands/install.yml)>>
+  submit: <<include(commands/submit.yml)>>
