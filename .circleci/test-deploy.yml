@@ -16,6 +16,10 @@ release-filters: &release-filters
 jobs:
   command-test:
     executor: tacotruck/default
+    parameters:
+      api_key:
+        type: env_var_name
+        default: TESTFIESTA_API_KEY
     steps:
       - checkout
       - tacotruck/install:
@@ -40,7 +44,7 @@ jobs:
           provider: "testfiesta"
           results_path: "./test-results/junit.xml"
           project_key: "test-project"
-          api_key: ${TESTFIESTA_API_KEY}
+          api_key: <<parameters.api_key>>
 workflows:
   test-deploy:
     jobs:
